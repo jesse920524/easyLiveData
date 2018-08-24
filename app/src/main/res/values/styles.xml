@@ -1,0 +1,17 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/grey_500</item>
+
+        <!--背景透明，不设滑动关闭时背景就是黑的。-->
+        <item name="android:windowIsTranslucent">true</item>
+        <!--Activity右滑进出的动画，觉得这个不好看随便换成自己的-->
+        <item name="android:windowAnimationStyle">@style/SlideRightAnimation</item>
+
+    </style>
+
+</resources>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout android:id="@+id/layout_web_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android.support.design="http://schemas.android.com/tools">
+
+    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <ImageView
+                android:id="@+id/iv_ad_bg"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:background="@color/grey_500"/>
+
+            <ImageView
+                android:id="@+id/iv_ad_back"
+                android:layout_width="@dimen/dp_24"
+                android:layout_height="@dimen/dp_24"
+                android:layout_margin="12dp"
+                android:src="@mipmap/ic_arrow_back_white_24dp"/>
+            <TextView
+                android:id="@+id/tv_ad_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_ad_bg"
+                android:layout_margin="24dp"
+                android:maxLines="3"
+                android:textColor="@color/white"
+                android:text="title"
+                android:textSize="@dimen/sp_24"/>
+            <!--android:paddingTop="28dp"-->
+            <WebView
+                android:id="@+id/wv_ad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_ad_bg"
+                ></WebView>
+
+        </RelativeLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+    <ProgressBar
+        android:id="@+id/pb_web"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/colorAccent"
+        android:visibility="gone"/>
+
+</android.support.design.widget.CoordinatorLayout>
