@@ -1,5 +1,6 @@
 package me.jessefu.livedata_arch.base;
 
+import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
 import android.arch.lifecycle.ViewModelStoreOwner;
@@ -14,7 +15,7 @@ import butterknife.ButterKnife;
  * Created by icourt on 2018/8/24.
  */
 
-public abstract class BaseActivity<T extends ViewModel> extends AppCompatActivity {
+public abstract class BaseActivity<T extends ViewModel> extends AppCompatActivity{
 
 //    protected T mViewModel;
 

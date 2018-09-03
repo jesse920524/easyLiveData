@@ -61,24 +61,8 @@ public class MainVM extends ViewModel {
             Log.d(TAG, "onNext: " + zhihuLatestNewsResponse.getStories());
             if (!zhihuLatestNewsResponse.getStories().isEmpty()){
                 Observable.just(zhihuLatestNewsResponse)
-                        .map(new Function<ZhihuLatestNewsResponse, List<ZhihuNewsEntity>>() {
-                            @Override
-                            public List<ZhihuNewsEntity> apply(ZhihuLatestNewsResponse zhihuLatestNewsResponse) throws Exception {
-                                List<ZhihuNewsEntity> result = new ArrayList<>();
-                                for (ZhihuLatestNewsResponse.StoriesBean storyBean :
-                                        zhihuLatestNewsResponse.getStories()) {
-                                    ZhihuNewsEntity entity = new ZhihuNewsEntity();
-                                    entity.setGaPrefix(storyBean.getGaPrefix());
-                                    entity.setId(storyBean.getId());
-                                    entity.setImages(storyBean.getImages());
-                                    entity.setMultipic(storyBean.isMultipic());
-                                    entity.setType(storyBean.getType());
-                                    entity.setTitle(storyBean.getTitle());
-                                    result.add(entity);
-                                }
-                                return result;
-                            }
-                        }).subscribe(new Consumer<List<ZhihuNewsEntity>>() {
+                        .map(new TransformFunction())
+                        .subscribe(new Consumer<List<ZhihuNewsEntity>>() {
                     @Override
                     public void accept(List<ZhihuNewsEntity> data) throws Exception {
                         liveData.setValue(data);
@@ -107,5 +91,27 @@ public class MainVM extends ViewModel {
 
     public MutableLiveData<Boolean> getLiveDataRefreshing() {
         return liveDataRefreshing;
+    }
+
+    /**
+     * transform http response -> entities*/
+    private static class TransformFunction implements Function<ZhihuLatestNewsResponse, List<ZhihuNewsEntity>>{
+
+        @Override
+        public List<ZhihuNewsEntity> apply(ZhihuLatestNewsResponse zhihuLatestNewsResponse) throws Exception {
+            List<ZhihuNewsEntity> result = new ArrayList<>();
+            for (ZhihuLatestNewsResponse.StoriesBean storyBean :
+                    zhihuLatestNewsResponse.getStories()) {
+                ZhihuNewsEntity entity = new ZhihuNewsEntity();
+                entity.setGaPrefix(storyBean.getGaPrefix());
+                entity.setId(storyBean.getId());
+                entity.setImages(storyBean.getImages());
+                entity.setMultipic(storyBean.isMultipic());
+                entity.setType(storyBean.getType());
+                entity.setTitle(storyBean.getTitle());
+                result.add(entity);
+            }
+            return result;
+        }
     }
 }
